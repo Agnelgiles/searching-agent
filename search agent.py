@@ -144,11 +144,17 @@ def get_input(text="city"):
 def get_input_for_search():
     i=searh_input()
     return i.get_search_cities()
-
+def make_screen():
+    screen.fill(white)
+    search=pygame.draw.rect(screen,blue,(1237, 156,100,50))
+    search_text = CenteredText("search",1237, 156,100,50,20)
+    clear=pygame.draw.rect(screen,black,(1237,156+100,100,50))
+    clear_text=CenteredText("Clear",1237, 156+100,100,50,20,white)
+    pygame.display.flip()
 def update():
     global node_pos,city_name
     global line_pos
-    screen.fill(white)
+    make_screen()
     for p in line_pos:
         pygame.draw.line(screen, black, p[0],p[1])
     for city,p in node_pos.items():
@@ -157,10 +163,7 @@ def update():
     pygame.display.flip()
 
 screen=pygame.display.set_mode((0,0),RESIZABLE)
-screen.fill(white)
-search=pygame.draw.rect(screen,blue,(1237, 156,100,50))
-search_text = CenteredText("search",1237, 156,100,50,20)
-pygame.display.flip()
+make_screen()
 EXIT=True
 search_key_pressed=False
 adding=False
